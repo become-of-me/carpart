@@ -12,37 +12,37 @@ import java.io.IOException;
 
 @WebServlet("/login/Kaptcha.jpg")
 public class Kaptcha extends HttpServlet {
-	
-	
-	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		    response.setHeader("Pragma", "No-cache");  
-	        response.setHeader("Cache-Control", "no-cache");  
-	        response.setDateHeader("Expires", 0);  
-	        response.setContentType("image/jpeg");  
-	          
-	        //生成随机字串  
-	        String verifyCode = ImageUtil.generateVerifyCode(4);  
-	        //将生成的图形验证码当中的字符串存session,将来使用spring-session-redis
-	        request.getSession().setAttribute("validate", verifyCode);
-	        
-	       
-	        //生成图片  
-	        int w = 200, h = 80;  
-	        ImageUtil.outputImage(w, h, response.getOutputStream(), verifyCode);  
-		
-	}
-	
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(req, resp);
-	}
 
-	
-	
-	
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setHeader("Pragma", "No-cache");
+        response.setHeader("Cache-Control", "no-cache");
+        response.setDateHeader("Expires", 0);
+        response.setContentType("image/jpeg");
+
+        //鐢熸垚闅忔満瀛椾覆
+        String verifyCode = ImageUtil.generateVerifyCode(4);
+        //灏嗙敓鎴愮殑鍥惧舰楠岃瘉鐮佸綋涓殑瀛楃涓插瓨session,灏嗘潵浣跨敤spring-session-redis
+        request.getSession().setAttribute("validate", verifyCode);
+
+
+        //鐢熸垚鍥剧墖
+        int w = 200, h = 80;
+        ImageUtil.outputImage(w, h, response.getOutputStream(), verifyCode);
+
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+        // TODO Auto-generated method stub
+        doGet(req, resp);
+    }
+
+
+
+
 
 }

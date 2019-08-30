@@ -163,9 +163,9 @@
       <if test="leader != null" >
         LEADER = #{leader,jdbcType=VARCHAR},
       </if>
-      <if test="remark != null" >
-        REMARK = #{remark,jdbcType=VARCHAR},
-      </if>
+        <if test="remark != null" >
+            REMARK = #{remark,jdbcType=VARCHAR},
+        </if>
     </set>
     where ID = #{id,jdbcType=INTEGER}
   </update>
@@ -200,4 +200,24 @@
   <update id="updateUser" parameterType="loginVo" >
     update sys_user set password=#{password} where login_name=#{loginName}
   </update>
+  <select id="findAllUser" resultMap="BaseResultMap">
+    select * from sys_user where user_status=0
+  </select>
+  <select id="findSysUserByUserName" parameterType="com.xiupeilian.carpart.model.SysUser" resultMap="BaseResultMap">
+    select * from sys_user where username like '%${loginName}%'
+  </select>
+
+  <select id="findUserByLoginName" parameterType="string" resultMap="BaseResultMap">
+    select * from sys_user where login_name=#{loginName}
+  </select>
+
+  <select id="findUserByPhone" parameterType="string" resultMap="BaseResultMap">
+    select * from sys_user where phone=#{value}
+
+  </select>
+
+  <select id="findUserByEmail" parameterType="string" resultMap="BaseResultMap">
+    select * from sys_user where email=#{value}
+  </select>
+
 </mapper>

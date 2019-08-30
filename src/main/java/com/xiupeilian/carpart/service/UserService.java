@@ -1,8 +1,10 @@
 package com.xiupeilian.carpart.service;
 
 import com.xiupeilian.carpart.model.Menu;
+import com.xiupeilian.carpart.model.Role;
 import com.xiupeilian.carpart.model.SysUser;
 import com.xiupeilian.carpart.vo.LoginVo;
+import com.xiupeilian.carpart.vo.RegisterVo;
 
 import java.util.List;
 
@@ -20,4 +22,17 @@ public interface UserService {
     SysUser findUserByLoginNameAndEmail(LoginVo vo);
 
     void updateUser(SysUser user);
+
+    List<SysUser> findAllUser();
+
+    List<SysUser> findSysUserByUserName(SysUser sysUser);
+
+    SysUser findUserByLoginName(String loginName);
+
+    SysUser findUserByPhone(String telnum);
+
+    SysUser findUserByEmail(String email);
+
+    void addRegsiter(RegisterVo vo);
+    Role findRoleByRoleId(Integer roleId);
 }

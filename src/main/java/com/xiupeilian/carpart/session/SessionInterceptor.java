@@ -1,7 +1,5 @@
 package com.xiupeilian.carpart.session;
 
-import com.xiupeilian.carpart.model.Menu;
-import com.xiupeilian.carpart.model.SysUser;
 import com.xiupeilian.carpart.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -9,13 +7,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.List;
 
 /**
  * @Description: session拦截、权限控制
- * @Author: Tu Xu
+ * @Author: TuXu
  * @CreateDate: 2019/8/21 13:59
  * @Version: 1.0
  **/
@@ -32,7 +28,7 @@ public class SessionInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
         //获取请求资源目录
-        String path=request.getRequestURI();
+    /*    String path=request.getRequestURI();
         //判断资源路径是不是需要登陆才可以访问的
         if (path.contains("login")){
             return  true;
@@ -41,6 +37,7 @@ public class SessionInterceptor implements HandlerInterceptor {
             HttpSession session=request.getSession(false);
             if (null==session){
                 //如果session为null就代表未登录 跳转到登陆界面
+
                 response.sendRedirect(request.getContextPath()+"/login/toLogin");
                 return  false;
             }else {
@@ -69,8 +66,8 @@ public class SessionInterceptor implements HandlerInterceptor {
                 }
             }
 
-        }
-
+        }*/
+return true;
     }
 
 
