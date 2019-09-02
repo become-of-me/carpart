@@ -389,4 +389,27 @@
   <select id="findCompanyByCompanyName" parameterType="string" resultMap="BaseResultMap">
     select * from company where company_name=#{companyname}
   </select>
+    <select id="findCompanyById"  parameterType="int" resultMap="BaseResultMap">
+
+        select * from company where  id=#{companyId}
+
+    </select>
+
+
+
+    <select id="findCompanyByCompanyId" parameterType="int" resultMap="BaseResultMap">
+    select * from company where id=#{id}
+  </select>
+    <update id="updateCompanyPictureById" parameterType="CompanyPictureVo" >
+    update company set picurl1=#{data} where id=#{companyid}
+  </update>
+    <update id="updateCompanyPictureById2" parameterType="CompanyPictureVo" >
+    update company set picurl2=#{data} where id=#{companyid}
+  </update>
+    <update id="updateCompanyPictureById3" parameterType="CompanyPictureVo" >
+    update company set picurl3=#{data} where id=#{companyid}
+  </update>
+    <update id="updateCompanyMemoById" parameterType="Company" >
+        update company set memo =#{memo} where id=#{id}
+    </update>
 </mapper>

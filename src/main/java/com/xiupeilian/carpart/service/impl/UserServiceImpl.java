@@ -120,4 +120,27 @@ private RoleMapper roleMapper;
     public Role findRoleByRoleId(Integer roleId) {
         return roleMapper.selectByPrimaryKey(roleId);
     }
+
+    @Override
+    public List<SysUser> findUser(LoginVo vo) {
+        return userMapper.findUser(vo);
+    }
+
+    @Override
+    public SysUser findUserById(Integer id) {
+        return userMapper.findUserById(id);
+    }
+
+    @Override
+    public void updateUserStatusById(Integer id, Integer userStatus) {
+        SysUser user = new SysUser();
+        user.setId(id);
+        user.setUserStatus(userStatus);
+        userMapper.updateByPrimaryKeySelective(user);
+    }
+    @Override
+    public void addUser(SysUser user) {
+        userMapper.insertSelective(user);
+    }
+
 }

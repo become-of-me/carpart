@@ -8,4 +8,7 @@ import java.util.List;
 public interface ItemsMapper extends BaseMapper<Items> {
 
     List<Items> findItemsByQueryVo(Items items);
+    List<Items> findItemsByUserId(Integer id);
+
+    void updateItemDeleteStatusById(Integer id);
 }

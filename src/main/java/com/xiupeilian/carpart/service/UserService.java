@@ -35,4 +35,13 @@ public interface UserService {
 
     void addRegsiter(RegisterVo vo);
     Role findRoleByRoleId(Integer roleId);
+
+
+    List<SysUser> findUser(LoginVo vo);
+
+    SysUser findUserById(Integer id);
+
+    void updateUserStatusById(Integer id, Integer userStatus);
+
+    void addUser(SysUser user);
 }

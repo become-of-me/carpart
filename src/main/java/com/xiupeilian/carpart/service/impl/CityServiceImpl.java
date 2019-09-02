@@ -31,4 +31,10 @@ public class CityServiceImpl implements CityService {
         cityMapper.deleteByPrimaryKey(id);
     }
 
+
+    @Override
+    public List<City> findCities() {
+        return cityMapper.findCities();
+    }
+
 }

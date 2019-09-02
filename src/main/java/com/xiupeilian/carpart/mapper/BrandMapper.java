@@ -13,4 +13,7 @@ public interface BrandMapper extends BaseMapper<Brand> {
     List<Parts> findPartsAll();
 
     List<Parts> findPrimeAll();
+
+    Brand findBrandById(String singleBrand);
+
 }

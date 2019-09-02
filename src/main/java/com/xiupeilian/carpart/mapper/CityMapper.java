@@ -8,4 +8,6 @@ import java.util.List;
 public interface CityMapper extends BaseMapper<City> {
 
     List<City> findCitiesByParentId(Integer parentId);
+
+    List<City> findCities();
 }

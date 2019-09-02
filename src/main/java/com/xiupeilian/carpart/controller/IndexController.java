@@ -8,11 +8,15 @@ import com.xiupeilian.carpart.model.Notice;
 import com.xiupeilian.carpart.model.SysUser;
 import com.xiupeilian.carpart.service.DymsnService;
 import com.xiupeilian.carpart.service.UserService;
+import com.xiupeilian.carpart.util.SHA1Util;
+import com.xiupeilian.carpart.vo.LoginVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -94,4 +98,29 @@ public class IndexController {
         request.setAttribute("page",page);
         return "index/notice";
     }
+
+    @RequestMapping("/toChangePassword")
+    public String toChangePassword(){
+        return "index/changePassword";
+    }
+
+    @RequestMapping("/changePwd")
+    public void changePwd(LoginVo vo, String oldPwd, String newPwd, HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+        SysUser user = (SysUser) request.getSession().getAttribute("user");
+        String newpassword = SHA1Util.encode(oldPwd);
+
+
+        if(!user.getPassword().equals(newpassword)){
+            response.getWriter().write("1");
+        }else{
+            //密码正确
+            user.setPassword(SHA1Util.encode(newPwd));
+            userService.updateUser(user);
+
+            response.getWriter().write("2");
+        }
+
+    }
+
 }

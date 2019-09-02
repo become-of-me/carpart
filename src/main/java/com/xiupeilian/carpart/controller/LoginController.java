@@ -266,4 +266,47 @@ public void smsQuery(HttpServletResponse response,String phone) throws IOExcepti
 
 
 }
+    @RequestMapping("/message")
+    public void message(String telnum){
+
+        DefaultProfile profile = DefaultProfile.getProfile("cn-hangzhou", "LTAIstYYIyKChDvT", "lrnzLPgS4RFYybDR48BYNZUAvtAHVr");
+        IAcsClient client = new DefaultAcsClient(profile);
+
+        String code=new Random().nextInt(899999)+100000+"";
+
+        CommonRequest request = new CommonRequest();
+        request.setMethod(MethodType.POST);
+        request.setDomain("dysmsapi.aliyuncs.com");
+        request.setVersion("2017-05-25");
+        request.setAction("SendSms");
+        request.putQueryParameter("RegionId", "cn-hangzhou");
+        request.putQueryParameter("PhoneNumbers", telnum);
+        request.putQueryParameter("SignName", "\u4fee\u914d\u8fde");
+        request.putQueryParameter("TemplateCode", "SMS_172889045");
+        request.putQueryParameter("TemplateParam", "{\"code\":\""+code+"\"}");
+        jedis.boundValueOps(telnum).set(code,60000);
+        try {
+            CommonResponse response = client.getCommonResponse(request);
+            System.out.println(response.getData());
+        } catch (ServerException e) {
+            e.printStackTrace();
+        } catch (ClientException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @RequestMapping("/Verification")
+    public void Verification(String Verification,String telnum,HttpServletResponse response) throws IOException {
+
+        String aa= (String) jedis.opsForValue().get(telnum);
+        if (aa.equals(Verification)){
+            response.getWriter().print("1");
+        }else {
+            response.getWriter().print("2");
+        }
+
+
+    }
+
 }

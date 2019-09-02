@@ -164,4 +164,8 @@
   <select id="findCitiesByParentId" parameterType="int" resultMap="BaseResultMap">
     select * from city where parent_id=#{id}
   </select>
+    <select id="findCities" resultMap="BaseResultMap">
+
+    select * from city
+        </select>
 </mapper>

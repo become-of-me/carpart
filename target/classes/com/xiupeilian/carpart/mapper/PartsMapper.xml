@@ -94,4 +94,7 @@
   <select id="findPartsAll" resultMap="BaseResultMap">
      select * from parts order by seq
   </select>
+    <select id="findPartsById" parameterType="string" resultMap="BaseResultMap">
+    select*from parts where ID=#{id}
+  </select>
 </mapper>

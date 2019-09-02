@@ -219,5 +219,18 @@
   <select id="findUserByEmail" parameterType="string" resultMap="BaseResultMap">
     select * from sys_user where email=#{value}
   </select>
+    <select id="findUserById" parameterType="Integer"
+            resultMap="BaseResultMap">
+    select * from sys_user where id=#{value}
+  </select>
+    <select id="findUser" parameterType="loginVo" resultMap="BaseResultMap">
+        select * from sys_user
+        <where>
+            user_status=0
+            <if test="username!=null and username!=''">
+                and username like '%${username}%'
+            </if>
+        </where>
 
+    </select>
 </mapper>

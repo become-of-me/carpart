@@ -8,4 +8,7 @@ import java.util.List;
 public interface PartsMapper extends BaseMapper<Parts> {
 
     List<Parts> findPartsAll();
+
+
+    Parts findPartsById(String singleParts);
 }

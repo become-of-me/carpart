@@ -1,8 +1,11 @@
 package com.xiupeilian.carpart.controller;
 
 import com.xiupeilian.carpart.constant.SysConstant;
+import com.xiupeilian.carpart.model.Company;
+import com.xiupeilian.carpart.service.CompanyService;
 import com.xiupeilian.carpart.service.ItemsService;
 import com.xiupeilian.carpart.util.AliyunOSSClientUtil;
+import com.xiupeilian.carpart.vo.CompanyPictureVo;
 import org.apache.commons.fileupload.disk.DiskFileItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,13 +17,16 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 
 @Controller
 @RequestMapping("/upLoad")
 public class UpLoadControllter {
     @Autowired
     private ItemsService itemService;
+    @Autowired
+    private CompanyService companyService;
     @RequestMapping("/myUpload")
     public String upload(HttpServletRequest request) {
         //Items item=itemService.findItemByid(1);
@@ -46,5 +52,37 @@ public class UpLoadControllter {
 
     }
 
+    @RequestMapping("tocompanyUpload")
+    public String toCompanyUpload(String picture,int companyid,HttpServletRequest request){
 
+        request.setAttribute("pictureid",picture);
+        request.setAttribute("companyid",companyid);
+        return "login/index";
+    }
+
+    @RequestMapping("updateCompany")
+    public void updateCompany(CompanyPictureVo vo, HttpServletResponse response) throws IOException {
+        if (vo.getPictureid().equals("picurl1")){
+            companyService.updateCompanyPictureById(vo);
+            response.getWriter().write("1");
+        }else if(vo.getPictureid().equals("picurl2")){
+            companyService.updateCompanyPictureById2(vo);
+            response.getWriter().write("1");
+        }else {
+            companyService.updateCompanyPictureById3(vo);
+            response.getWriter().write("1");
+        }
+
+    }
+    @RequestMapping("updatememo")
+    public void updatememo(Company company, HttpServletResponse response) throws IOException {
+
+        companyService.updateCompanyMemoById(company);
+        response.getWriter().write("1");
+    }
+    @RequestMapping("updateCompanyInfo")
+    public void updateCompanyInfo(Company company,HttpServletResponse response)throws Exception{
+        companyService.updateByPrimaryKeySelective(company);
+        response.getWriter().write("1");
+    }
 }

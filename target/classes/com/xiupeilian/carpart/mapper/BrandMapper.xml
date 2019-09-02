@@ -118,5 +118,7 @@
     select * from brand order by seq
   </select>
 
-
+    <select id="findBrandById" parameterType="String" resultMap="BaseResultMap">
+    select * from brand where id=#{id}
+  </select>
 </mapper>

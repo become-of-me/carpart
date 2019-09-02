@@ -10,4 +10,6 @@ public interface PrimeMapper extends BaseMapper<Prime> {
 
 
     List<Parts> findPrimeAll();
+
+    Prime finPrimeById(int primeid);
 }

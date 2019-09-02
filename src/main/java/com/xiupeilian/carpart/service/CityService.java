@@ -14,4 +14,6 @@ import java.util.List;
 public interface CityService {
     List<City> findCitiesByParentId(Integer parentId);
   void  deleteCityById(int id);
+
+    List<City> findCities();
 }

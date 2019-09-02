@@ -17,4 +17,10 @@ public interface BrandService {
     List<Parts> findPartsAll();
 
     List<Parts> findPrimeAll();
+
+
+    Brand findBrandById(String singleBrand);
+
+    Parts findPartsById(String singleParts);
+
 }

@@ -94,4 +94,8 @@
   <select id="findPrimeAll" resultMap="BaseResultMap">
     select * from prime order by seq
   </select>
+    <select id="finPrimeById" parameterType="int" resultMap="BaseResultMap">
+
+        select * from prime where id=#{primeid}
+    </select>
 </mapper>
